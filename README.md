@@ -1,3 +1,5 @@
+# Bundi Privacy Policy
+
 **Last updated:** September 2025
 
 Thank you for using **Bundi**. Your privacy matters. This Privacy Policy explains what we collect, how we use it, and the choices you have.
