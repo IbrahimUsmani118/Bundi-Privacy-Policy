@@ -1,12 +1,12 @@
-name: Deploy Bundi Privacy Policy to GitHub Pages
+name: Deploy Bundi Privacy Policy
 
 on:
   push:
     branches: [ main ]
-  workflow_dispatch: {}   # allow manual runs
+  workflow_dispatch: {}
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -29,20 +29,9 @@ jobs:
       - name: Install markdown converter
         run: npm install -g marked
 
-      # Convert README (must NOT include "# Bundi Privacy Policy")
-      - name: Convert README.md to content.html
-        run: marked README.md --no-header-ids -o content.html
-
-      # Inject content into template.html
-      - name: Build index.html from template
-        run: |
-          sed -e '/<!--CONTENT-->/{
-            r content.html
-            d
-          }' template.html > index.html
-
-      - name: List output files
-        run: ls -la
+      # Convert README.md to index.html
+      - name: Convert README.md to index.html
+        run: marked README.md --no-header-ids -o index.html
 
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v3
